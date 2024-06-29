@@ -44,10 +44,13 @@ const HomePage = () => {
     </div>)
   }
   return (
-    <div className="container-fluid d-flex  align-items-center justify-content-evenly">
-      <CategoryList/>
-      <QuoteList quotes={quotes}/>
-    </div>
+    <>
+      <div className="container-fluid d-flex  align-items-center justify-content-evenly">
+        <CategoryList/>
+        <QuoteList quotes={quotes} getUpdate={getAxiosQuotes}/>
+      </div>
+    </>
+
   );
 };
 
