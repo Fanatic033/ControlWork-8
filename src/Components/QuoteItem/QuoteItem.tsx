@@ -1,7 +1,7 @@
 import {Quote} from '../../types.ts';
 import {FC} from 'react';
 import axiosApi from '../../AxiosApi.tsx';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 interface Props {
   quote: Quote;
@@ -28,7 +28,9 @@ const QuoteItem: FC<Props> = ({quote, getUpdate}) => {
           <p className="card-text">{quote.message}</p>
         </div>
         <div className={'card-footer'}>
-          <button type="button" className="btn btn-warning me-3">Edit</button>
+          <Link to={`/quotes/${quote.id}/edit`}>
+            <button type="button" className="btn btn-warning me-3">Edit</button>
+          </Link>
           <button type="button" className="btn btn-danger" onClick={getDelete}>Delete</button>
         </div>
       </div>

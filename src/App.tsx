@@ -13,6 +13,7 @@ const App = () => {
           <Route path="/" element={<HomePage/>}/>
           <Route path="quotes/:category" element={<HomePage/>}/>
           <Route path="add-quote" element={<NewQuotePage/>}/>
+          <Route path={'quotes/:id/edit'} element={<NewQuotePage/>}/>
         </Routes>
       </main>
     </>

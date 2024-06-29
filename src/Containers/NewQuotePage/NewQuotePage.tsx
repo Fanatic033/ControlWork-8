@@ -1,15 +1,18 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
-import {QuoteMutation} from '../../types.ts';
+import {ChangeEvent, FormEvent, useCallback, useEffect, useState} from 'react';
+import {Quote, QuoteMutation} from '../../types.ts';
 import AxiosApi from '../../AxiosApi.tsx';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
+const initialState = {
+  category: '',
+  author: '',
+  message: '',
+};
 const NewQuotePage = () => {
-  const [form, setForm] = useState<QuoteMutation>({
-    category: '',
-    author: '',
-    message: '',
-  });
+  const [form, setForm] = useState<QuoteMutation>(initialState);
   const navigate = useNavigate();
+  const {id} = useParams();
+
   const onFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
     setForm((prev) => ({
@@ -20,18 +23,38 @@ const NewQuotePage = () => {
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await AxiosApi.post('/quotes.json', form);
+      if (id) {
+        await AxiosApi.put(`/quotes/${id}.json`, form);
+      } else {
+        await AxiosApi.post('/quotes.json', form);
+      }
+      navigate('/');
+
     } catch (error) {
       console.log(error);
     }
-    {
-      navigate('/');
-    }
   };
+  const fetchOneQuote = useCallback(async () => {
+    try {
+      const response = await AxiosApi.get<Quote>(`/quotes/${id}.json`);
+      if (response.data) {
+        setForm(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [id]);
+  useEffect(() => {
+    if (id) {
+      void fetchOneQuote();
+    } else {
+      setForm(initialState);
+    }
+  }, [id, fetchOneQuote]);
   return (
     <>
       <form className="container" onSubmit={onSave}>
-        <h2 className="text-center mt-5">Add new Quote</h2>
+        <h2 className="text-center mt-5">{id ? 'Edit Quote' : 'Add Quote'}</h2>
         <div className="input-group">
           <label className="mt-5 w-100">
             Категории

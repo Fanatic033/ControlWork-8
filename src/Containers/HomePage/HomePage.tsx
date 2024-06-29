@@ -29,8 +29,8 @@ const HomePage = () => {
         setQuotes(quotesList);
       }
     } catch (error) {
-      console.error( error);
-    }finally {
+      console.error(error);
+    } finally {
       setLoading(false);
     }
   }, [category]);
@@ -41,7 +41,7 @@ const HomePage = () => {
   if (loading) {
     return (<div className="d-flex justify-content-center align-items-center" style={{height: '310px'}}>
       <Spinner/>
-    </div>)
+    </div>);
   }
   return (
     <>
