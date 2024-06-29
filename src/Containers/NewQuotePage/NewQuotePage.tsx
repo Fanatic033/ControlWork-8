@@ -42,11 +42,11 @@ const NewQuotePage = () => {
               onChange={onFieldChange}
             >
               <option value="" disabled>Выберите Категорию</option>
-              <option value="Star Wars">Star Wars</option>
-              <option value="Famous people">Famous people</option>
-              <option value="Saying">Saying</option>
-              <option value="Humour">Humour</option>
-              <option value="Motivational">Motivational</option>
+              <option value="star-wars">Star Wars</option>
+              <option value="famous-people">Famous people</option>
+              <option value="saying">Saying</option>
+              <option value="humour">Humour</option>
+              <option value="motivational">Motivational</option>
             </select>
           </label>
         </div>
