@@ -45,9 +45,13 @@ const HomePage = () => {
   }
   return (
     <>
-      <div className="container-fluid d-flex  align-items-center justify-content-evenly">
-        <CategoryList/>
-        <QuoteList quotes={quotes} getUpdate={getAxiosQuotes}/>
+      <div>
+        <div>
+          <CategoryList/>
+        </div>
+        {quotes.length === 0 ? <h1 className='text-center'>НЕТ ЦИТАТ</h1>
+          : <QuoteList quotes={quotes} getUpdate={getAxiosQuotes} />
+        }
       </div>
     </>
 

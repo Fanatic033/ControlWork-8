@@ -1,17 +1,18 @@
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import {Dropdown, DropdownButton} from 'react-bootstrap';
 
 const CategoryList = () => {
   return (
-    <>
-      <ul className={'fs-5 list-group'}>
-        <li className="list-group-item"><NavLink to={'/'} className="text-decoration-none">All</NavLink></li>
-        <li className="list-group-item"><NavLink to={'/quotes/star-wars'} className="text-decoration-none">Star Wars</NavLink></li>
-        <li className="list-group-item"><NavLink to={'/quotes/famous-people'} className="text-decoration-none">Famous People</NavLink></li>
-        <li className="list-group-item"><NavLink to={'/quotes/saying'} className="text-decoration-none">Saying</NavLink></li>
-        <li className="list-group-item"><NavLink to={'/quotes/humour'} className="text-decoration-none">Humour</NavLink></li>
-        <li className="list-group-item"><NavLink to={'/quotes/motivational'} className="text-decoration-none">Motivational</NavLink></li>
-      </ul>
-    </>
+    <div className='text-center mt-3 mb-5'>
+    <DropdownButton id="dropdown-basic-button" title="Categories">
+      <Dropdown.Item as={NavLink} to="/">All</Dropdown.Item>
+      <Dropdown.Item as={NavLink} to="/quotes/star-wars">Star Wars</Dropdown.Item>
+      <Dropdown.Item as={NavLink} to="/quotes/famous-people">Famous People</Dropdown.Item>
+      <Dropdown.Item as={NavLink} to="/quotes/saying">Saying</Dropdown.Item>
+      <Dropdown.Item as={NavLink} to="/quotes/humour">Humour</Dropdown.Item>
+      <Dropdown.Item as={NavLink} to="/quotes/motivational">Motivational</Dropdown.Item>
+    </DropdownButton>
+    </div>
   );
 };
 
