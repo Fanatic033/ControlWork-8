@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import {Quote} from '../../types.ts';
+import {Quote, QuotesList} from '../../types.ts';
 import AxiosApi from '../../AxiosApi.tsx';
 import QuoteList from '../../Components/QuoteList/QuoteList.tsx';
 import CategoryList from '../../Components/CategoryList/CategoryList.tsx';
@@ -18,7 +18,7 @@ const HomePage = () => {
       if (category) {
         url += `?orderBy="category"&equalTo="${category}"`;
       }
-      const response = await AxiosApi.get<{ [key: string]: Quote }>(url);
+      const response = await AxiosApi.get<QuotesList>(url);
       const data = response.data;
 
       if (data !== null) {
@@ -49,8 +49,8 @@ const HomePage = () => {
         <div>
           <CategoryList/>
         </div>
-        {quotes.length === 0 ? <h1 className='text-center'>НЕТ ЦИТАТ</h1>
-          : <QuoteList quotes={quotes} getUpdate={getAxiosQuotes} />
+        {quotes.length === 0 ? <h1 className="text-center">НЕТ ЦИТАТ</h1>
+          : <QuoteList quotes={quotes} getUpdate={getAxiosQuotes}/>
         }
       </div>
     </>

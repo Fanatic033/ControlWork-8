@@ -11,5 +11,5 @@ export interface  QuoteMutation {
 }
 
 export interface QuotesList {
-  [id: string]: Quote;
+  [key: string]: Quote;
 }
